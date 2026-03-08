@@ -63,8 +63,7 @@ if mode == 'Single Trip Between Two Cities':
     destination_address_value = st.text_input("Enter destination address:", value="Chennai")
     transport_mode = st.selectbox(
         "Mode of transport:",
-        ['driving-car','driving-hgv','foot-walking','foot-hiking',
-         'cycling-regular','cycling-road','cycling-mountain','cycling-electric']
+        ['car', 'bike', 'foot', 'hgv']
     )
     distance_unit = st.selectbox('Distance unit:', ['km','miles']).lower()
     cost_rate_input = st.text_input("Travel cost per unit distance:", value="200")

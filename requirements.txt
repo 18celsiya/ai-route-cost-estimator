@@ -2,6 +2,6 @@ streamlit>=1.41.0
 pandas==2.1.0
 crewai==1.10.1
 openrouteservice==2.3.3
-python-dotenv
+python-dotenv==1.2.2
 numpy==1.26.0
-requests>=2.32.3,<3
+requests==2.31.0
