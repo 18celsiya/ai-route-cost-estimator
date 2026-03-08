@@ -5,4 +5,4 @@ openrouteservice==2.3.3
 python-dotenv==1.2.2
 numpy==1.26.0
 requests==2.31.0
-graphh=0.1.2
+graphh==0.1.2
