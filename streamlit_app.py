@@ -148,8 +148,8 @@ if mode == "Multiple trips calculation via CSV/Excel":
         if st.button("Calculate Distance & Travel Cost"):
 
             # Create crews for distance conversion and cost calculation
-            distance_crew = Crew(agents=[distance_calculator], tasks=[distance_task], verbose=True)
-            cost_crew = Crew(agents=[travel_agent], tasks=[travel_cost_task], verbose=True)
+            distance_crew = Crew(agents=[distance_calculator], tasks=[distance_task], verbose=True, memory = None)
+            cost_crew = Crew(agents=[travel_agent], tasks=[travel_cost_task], verbose=True, memory = None)
 
             # Row-wise processing with progress bar
             for idx, row in df.iterrows():

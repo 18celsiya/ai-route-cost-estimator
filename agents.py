@@ -41,7 +41,7 @@ distance_calculator = Agent(
     temperature=0,
     verbose=True,
     max_execution_time=1200,
-    memory=Memory(),
+    memory=False,
     allow_delegation=False
 )
 
@@ -52,7 +52,7 @@ travel_agent = Agent(
     llm=llm,
     temperature=0,
     verbose=True,
-    memory=Memory(),
+    memory=False,
     max_execution_time=1200,
     allow_delegation=False
 )
