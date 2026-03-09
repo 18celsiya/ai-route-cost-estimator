@@ -5,4 +5,6 @@ python-dotenv>=1.1.1,<1.2
 numpy==1.26.0
 requests>=2.32.3,<3.0
 graphh==0.1.2
-groq
+groq                # Groq Python SDK to talk to Groq API
+langchain           # Core LangChain framework
+langchain-groq      # Integration layer for Groq in LangChain

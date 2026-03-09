@@ -68,56 +68,45 @@ conversation_crew = st.session_state.conversation_crew
 if "conversation_history" not in st.session_state:
     st.session_state.conversation_history = []
 
-# User input 
-user_input = st.chat_input("Ask a question about travel or distance")
+# ===============================================
+# Single Trip Chat - Streamlit
+# ===============================================
+if mode == 'Single Trip Between Two Cities':
+    # Initialize conversation history in session_state
+    if "conversation_history" not in st.session_state:
+        st.session_state.conversation_history = []
 
-# handle user input and agent responses
-if user_input:
-    # Display user input
-    with st.chat_message("user"):
-        st.write(user_input)
-    # store user input in conversation history
-    st.session_state.conversation_history.append(("You", user_input))
+    # User input box
+    user_input = st.chat_input("Ask a question about travel or distance")
 
-    # Decide which agent to use based on user input
-    with st.spinner("Processing..."):
-        try:
-            if "convert" in user_input.lower() or "meters" in user_input.lower() or "km" in user_input.lower() or "miles" in user_input.lower():
-                # Use distance calculator for conversion questions
-                result_obj = distance_calculator.kickoff({
-                    "user_input": user_input
-                })
-            elif "cost" in user_input.lower() or "price" in user_input.lower() or "₹" in user_input:
-                # Use travel cost agent if explicitly asking for cost (optional)
-                result_obj = travel_agent.kickoff({
-                    "user_input": user_input
-                })
-            else:
-                # Default: use single_trip_agent for travel questions
+    if user_input:
+        # Append user message as dictionary
+        st.session_state.conversation_history.append({"role": "user", "content": user_input})
+
+        # Call the agent with user_input and conversation context
+        with st.spinner("Processing..."):
+            try:
                 result_obj = conversation_crew.kickoff({
-                    "user_input": user_input
+                    "user_input": user_input,
+                    "conversation_history": st.session_state.conversation_history
                 })
+                response = str(result_obj)
+            except Exception as e:
+                response = f"Error: {e}"
 
-            response = str(result_obj)
+        # Append assistant response
+        st.session_state.conversation_history.append({"role": "assistant", "content": response})
 
-        except Exception as e:
-            response = f"Error: {e}"
+    # Display conversation in order
+    for msg in st.session_state.conversation_history:
+        # Convert old tuple entries to dictionary format if present
+        if isinstance(msg, tuple):
+            role = "user" if msg[0] == "You" else "assistant"
+            content = msg[1]
+            msg = {"role": role, "content": content}
 
-    # Display assistant response
-    with st.chat_message("assistant"):
-        st.write(response)
-
-    st.session_state.conversation_history.append(("Assistant", response))
-
-# Display conversation history
-for speaker, text in st.session_state.conversation_history:
-    if speaker == "You":
-        with st.chat_message("user"):
-            st.write(text)
-    else:
-        with st.chat_message("assistant"):
-            st.write(text)
-
+        with st.chat_message(msg["role"]):
+            st.write(msg["content"])
 # =========================================================
 # Batch Calculation via CSV/Excel
 # =========================================================
