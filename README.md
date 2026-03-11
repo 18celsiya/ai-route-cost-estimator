@@ -1,9 +1,11 @@
 # 🚀 AI Travel Distance & Reimbursement Estimator
 
-![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![CrewAI](https://img.shields.io/badge/Framework-CrewAI-purple)
 ![Streamlit](https://img.shields.io/badge/UI-Streamlit-red)
 ![Status](https://img.shields.io/badge/Project-AI%20Agents-success)
+![Groq](https://img.shields.io/badge/LLM-Groq-orange)
+![GraphHopper](https://img.shields.io/badge/Routing-GraphHopper-green)
 
 An **AI-powered application** that automates travel distance calculation and reimbursement estimation using **AI agents**.
 
