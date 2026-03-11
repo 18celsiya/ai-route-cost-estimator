@@ -45,12 +45,23 @@ All orchestrated using **AI agents working together**.
 
 This project uses **CrewAI** to build a multi-agent system.
 
-### 1️⃣ Distance Calculator Agent
+### 1️⃣ Conversational Bot Agent
+A chatbot-style agent that answers user queries about travel distance and reimbursement cost.
+
+Examples:
+- "What is the distance between Chennai and Bangalore?"
+- "What will be the reimbursement for 200 km at ₹5 per km?"
+
+The bot understands the request, retrieves the required information, and responds to the user.
+
+---
+
+### 2️⃣ Distance Calculator Agent
 - Calls the **GraphHopper Routing API**
 - Retrieves travel distance between two locations
 - Converts distance to the required unit (km / miles)
 
-### 2️⃣ Reimbursement Calculator Agent
+### 3️⃣Reimbursement Calculator Agent
 - Takes the calculated distance
 - Applies **cost per distance unit**
 - Calculates the reimbursement amount
@@ -72,13 +83,43 @@ This project demonstrates several **AI agent concepts**:
 
 ---
 
+### Agent Collaboration Workflow
+
+User Input (Travel distance & cost query OR multiple trip calculation via CSV/Excel)
+
+↓  
+
+The Bot Agent analyzes the request and decides which workflow to trigger
+
+↓  
+
+Distance Agent  
+• Calls the GraphHopper API  
+• Retrieves distance between locations  
+• Automatically converts units (km / miles)
+
+↓  
+
+Distance Result
+
+↓  
+
+Reimbursement Agent  
+• Extracts numeric distance value  
+• Applies cost per unit  
+• Calculates reimbursement amount
+
+↓  
+
+Final Result returned to the user
+
 # 🛠 Technologies Used
 
 | Technology | Purpose |
 |------------|---------|
 | CrewAI | AI agent orchestration |
 | Groq | High-speed LLM inference |
-| GraphHopper API | Routing and distance calculation |
+| GraphHopper API | Routing engine used to calculate travel distance |
 | Streamlit | Web application interface |
 | Python | Core programming language |
 | Pandas | CSV / Excel data processing |
@@ -121,9 +162,9 @@ Compared to traditional SaaS tools, this approach allows organizations to build 
 
 Advantages include:
 
-- Uses routing APIs with free tiers instead of expensive services like Google Maps
+- Uses routing APIs with free tiers instead of relying on expensive services like Google Maps.
 - Lower operational cost
-- Fully customizable workflow
+- Fully customizable for internal workflows
 - Secure API key storage using Streamlit Secrets
 
 ---
@@ -131,7 +172,7 @@ Advantages include:
 # ⚠️ Limitations
 
 - If an address is incorrect or incomplete, the system may fail to calculate the distance
-- Some small towns or lesser-known locations may not be recognized by the routing API
+- Some small towns or lesser-known locations may not be recognized by the routing service.
 
 ---
 
